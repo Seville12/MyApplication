@@ -31,7 +31,8 @@ namespace MyApplication
                 }
                 catch (Exception ex)
                 {
-                   
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
 
@@ -39,7 +40,8 @@ namespace MyApplication
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+           WebHost.CreateDefaultBuilder(args)
+               .UseStartup<Startup>()
+               .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Information));
     }
 }
