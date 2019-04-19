@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MyApplication.Models.Queue>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Записаться в очередь</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <b>Имя</b><br />
+            </th>
+            <th>
+                <b>Время начало работы</b><br />
+            </th>
+            <th>
+                <b>Время использования</b><br />
+            </th>
+            <th>
+                <b>Микроволновка</b><br />
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsingTime.UsingTimeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Microwave.MicrowaveId)
+            </td>
+        </tr>
+ }
+    </tbody>
+</table>

@@ -1,0 +1,43 @@
+﻿@model MyApplication.Models.Queue
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Queue</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="User" class="control-label">Имя</label>
+                <input asp-for="User" class="form-control" />
+                <span asp-validation-for="User" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label">Время начало работы</label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsingTimeId" class="control-label">Время использования (в минутах)</label>
+                <select asp-for="UsingTimeId" class ="form-control" asp-items="ViewBag.UsingTimeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MicrowaveId" class="control-label">Микроволновка</label>
+                <select asp-for="MicrowaveId" class ="form-control" asp-items="ViewBag.MicrowaveId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться к просмотру очереди</a>
+</div>
+
