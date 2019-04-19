@@ -10,7 +10,7 @@ using MyApplication.Data;
 namespace MyApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190417155607_Init")]
+    [Migration("20190419135534_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,6 +135,61 @@ namespace MyApplication.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("MyApplication.Models.Microwave", b =>
+                {
+                    b.Property<int>("MicrowaveId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Mark");
+
+                    b.Property<int?>("RelaxRoomId");
+
+                    b.Property<int>("RelaxRoonId");
+
+                    b.HasKey("MicrowaveId");
+
+                    b.HasIndex("RelaxRoomId");
+
+                    b.ToTable("Microwaves");
+                });
+
+            modelBuilder.Entity("MyApplication.Models.Queue", b =>
+                {
+                    b.Property<int>("QueueId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MicrowaveId");
+
+                    b.Property<DateTime>("StartDate");
+
+                    b.Property<string>("User");
+
+                    b.Property<int>("UsingTimeId");
+
+                    b.HasKey("QueueId");
+
+                    b.HasIndex("MicrowaveId");
+
+                    b.HasIndex("UsingTimeId");
+
+                    b.ToTable("Queues");
+                });
+
+            modelBuilder.Entity("MyApplication.Models.RelaxRoom", b =>
+                {
+                    b.Property<int>("RelaxRoomId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("RelaxRoomId");
+
+                    b.ToTable("RelaxRooms");
+                });
+
             modelBuilder.Entity("MyApplication.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -186,6 +241,19 @@ namespace MyApplication.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("MyApplication.Models.UsingTime", b =>
+                {
+                    b.Property<int>("UsingTimeId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<float>("Value");
+
+                    b.HasKey("UsingTimeId");
+
+                    b.ToTable("UsingTimes");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -228,6 +296,26 @@ namespace MyApplication.Migrations
                     b.HasOne("MyApplication.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MyApplication.Models.Microwave", b =>
+                {
+                    b.HasOne("MyApplication.Models.RelaxRoom", "RelaxRoom")
+                        .WithMany()
+                        .HasForeignKey("RelaxRoomId");
+                });
+
+            modelBuilder.Entity("MyApplication.Models.Queue", b =>
+                {
+                    b.HasOne("MyApplication.Models.Microwave", "Microwave")
+                        .WithMany()
+                        .HasForeignKey("MicrowaveId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MyApplication.Models.UsingTime", "UsingTime")
+                        .WithMany()
+                        .HasForeignKey("UsingTimeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

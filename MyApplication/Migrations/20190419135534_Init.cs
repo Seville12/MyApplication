@@ -48,6 +48,32 @@ namespace MyApplication.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RelaxRooms",
+                columns: table => new
+                {
+                    RelaxRoomId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RelaxRooms", x => x.RelaxRoomId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UsingTimes",
+                columns: table => new
+                {
+                    UsingTimeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Value = table.Column<float>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UsingTimes", x => x.UsingTimeId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -153,6 +179,55 @@ namespace MyApplication.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Microwaves",
+                columns: table => new
+                {
+                    MicrowaveId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Mark = table.Column<string>(nullable: true),
+                    RelaxRoonId = table.Column<int>(nullable: false),
+                    RelaxRoomId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Microwaves", x => x.MicrowaveId);
+                    table.ForeignKey(
+                        name: "FK_Microwaves_RelaxRooms_RelaxRoomId",
+                        column: x => x.RelaxRoomId,
+                        principalTable: "RelaxRooms",
+                        principalColumn: "RelaxRoomId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Queues",
+                columns: table => new
+                {
+                    QueueId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    User = table.Column<string>(nullable: true),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    UsingTimeId = table.Column<int>(nullable: false),
+                    MicrowaveId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Queues", x => x.QueueId);
+                    table.ForeignKey(
+                        name: "FK_Queues_Microwaves_MicrowaveId",
+                        column: x => x.MicrowaveId,
+                        principalTable: "Microwaves",
+                        principalColumn: "MicrowaveId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Queues_UsingTimes_UsingTimeId",
+                        column: x => x.UsingTimeId,
+                        principalTable: "UsingTimes",
+                        principalColumn: "UsingTimeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +266,21 @@ namespace MyApplication.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Microwaves_RelaxRoomId",
+                table: "Microwaves",
+                column: "RelaxRoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Queues_MicrowaveId",
+                table: "Queues",
+                column: "MicrowaveId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Queues_UsingTimeId",
+                table: "Queues",
+                column: "UsingTimeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +301,22 @@ namespace MyApplication.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Queues");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Microwaves");
+
+            migrationBuilder.DropTable(
+                name: "UsingTimes");
+
+            migrationBuilder.DropTable(
+                name: "RelaxRooms");
         }
     }
 }
