@@ -70,6 +70,10 @@ namespace MyApplication
 
             app.UseAuthentication();
 
+            app.UseDeveloperExceptionPage();
+
+            app.UseStatusCodePagesWithReExecute("/Error/Error", "?statusCode={0}");
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
