@@ -1,8 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
-<div class="text-center">
-    <h1 class="display-4">Добро пожаловать!</h1>
-    <p>Приложение, которое позволяет создавать онлайн очередь.</p>
-</div>
+
+<h1>@Localizer["Header"]</h1>
+<h3>@Localizer["Message"]</h3>

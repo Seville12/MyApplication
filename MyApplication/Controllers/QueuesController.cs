@@ -31,8 +31,8 @@ namespace MyApplication.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["MicrowaveId"] = new SelectList(_context.Microwaves, "MicrowaveId", "MicrowaveId");
-            ViewData["UsingTimeId"] = new SelectList(_context.UsingTimes, "UsingTimeId", "UsingTimeId");
+            ViewData["MicrowaveId"] = new SelectList(_context.Microwaves, "MicrowaveId", "Mark");
+            ViewData["UsingTimeId"] = new SelectList(_context.UsingTimes, "UsingTimeId", "Value");
             return View();
         }
 

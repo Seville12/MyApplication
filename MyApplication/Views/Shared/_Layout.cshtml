@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @using Microsoft.AspNetCore.Identity
+    @inject SignInManager<MyApplication.Models.User> SignInManager
     <title>@ViewData["Title"] - MyApplication</title>
 
     <environment include="Development">
@@ -13,7 +15,7 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="/>
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -32,9 +34,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Queues" asp-action="Index">Queue</a>
-                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Queues" asp-action="Index">Queue</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -46,6 +51,22 @@
             @RenderBody()
         </main>
     </div>
+    <footer class="border-top footer text-muted">
+        <div class="row">
+            <div class="col-sm-6">
+                <p>&copy; 2019 - MyApplication</p>
+            </div>
+            <div class="col-sm-6 text-right">
+                @await Html.PartialAsync("_SelectLanguagePartial")
+            </div>
+        </div>
+    </footer>
+
+    @*<footer class="border-top footer text-muted">
+        <div class="container">
+            @await Html.PartialAsync("_SelectLanguagePartial")
+        </div>
+    </footer>*@
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
