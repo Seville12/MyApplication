@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @using Microsoft.AspNetCore.Identity
-    @inject SignInManager<MyApplication.Models.User> SignInManager
+    @inject SignInManager<DAL.Models.User> SignInManager
     <title>@ViewData["Title"] - MyApplication</title>
 
     <environment include="Development">
@@ -46,7 +46,6 @@
         </nav>
     </header>
     <div class="container">
-        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

@@ -1,14 +1,14 @@
-﻿using System;
+﻿using DAL.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace MyApplication.Models
+namespace BAL.Models
 {
     /// <summary>
     /// Очередь
     /// </summary>
-    public class Queue
+    public class BQueue
     {
         /// <summary>
         /// Индентификатор микроволновки
@@ -34,11 +34,10 @@ namespace MyApplication.Models
         /// <summary>
         /// Свзяь с таблицей "Время работы"
         /// </summary>
-        public virtual UsingTime UsingTime { get; set; }
+        public virtual BUsingTime UsingTime { get; set; }
         /// <summary>
         /// Связь с таблицей "Микроволновка"
         /// </summary>
-        public virtual Microwave Microwave { get; set; }
-      
+        public virtual BMicrowave Microwave { get; set; }
     }
 }

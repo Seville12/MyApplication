@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyApplication.Models.ViewModels
 {
+    /// <summary>
+    /// Авторизация
+    /// </summary>
     public class LoginViewModel
     {
         [Required]

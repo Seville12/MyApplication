@@ -21,6 +21,11 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using BAL.Data;
+using DAL.Data;
+using MyApplication.Services;
+using MyApplication.Services.Implementation;
+using DAL.Models;
 
 namespace MyApplication
 {
@@ -43,9 +48,10 @@ namespace MyApplication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IQueueService, QueueService>();
+            services.AddDataLibraryCollection(Configuration);
+            services.AddBusinessLibraryCollection();
+
             services.AddDefaultIdentity<User>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

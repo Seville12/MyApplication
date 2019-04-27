@@ -12,19 +12,12 @@ using MyApplication.Models.ViewModels;
 
 namespace MyApplication.Controllers
 {
+    /// <summary>
+    /// Базовый контроллер
+    /// </summary>
     public class HomeController : Controller
     {
-        //private readonly IStringLocalizer<HomeController> _localizer;
-        //public HomeController(IStringLocalizer<HomeController> localizer)
-        //{
-        //    _localizer = localizer;
-        //}
-        //public IActionResult Index()
-        //{
-        //    ViewData["Title"] = _localizer["Header"];
-        //    ViewData["Message"] = _localizer["Message"];
-        //    return View();
-        //}
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -42,6 +35,7 @@ namespace MyApplication.Controllers
             return LocalRedirect(returnUrl);
         }
 
+        [HttpGet]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace MyApplication.Models
+namespace DAL.Models
 {
     /// <summary>
     /// Микроволновка
     /// </summary>
-    public class Microwave
+    public class DMicrowave
     {
         /// <summary>
         /// Идентификатор микроволновки
@@ -26,7 +25,6 @@ namespace MyApplication.Models
         /// <summary>
         /// Связь с таблицей "Комната отдыха"
         /// </summary>
-        public virtual RelaxRoom RelaxRoom { get; set; }
-
+        public virtual DRelaxRoom RelaxRoom { get; set; }
     }
 }
