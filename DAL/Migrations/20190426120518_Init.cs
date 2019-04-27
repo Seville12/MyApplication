@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MyApplication.Migrations
+namespace DAL.Migrations
 {
     public partial class Init : Migration
     {
@@ -48,7 +48,7 @@ namespace MyApplication.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RelaxRooms",
+                name: "DRelaxRooms",
                 columns: table => new
                 {
                     RelaxRoomId = table.Column<int>(nullable: false)
@@ -57,11 +57,11 @@ namespace MyApplication.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RelaxRooms", x => x.RelaxRoomId);
+                    table.PrimaryKey("PK_DRelaxRooms", x => x.RelaxRoomId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UsingTimes",
+                name: "DUsingTimes",
                 columns: table => new
                 {
                     UsingTimeId = table.Column<int>(nullable: false)
@@ -70,7 +70,7 @@ namespace MyApplication.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UsingTimes", x => x.UsingTimeId);
+                    table.PrimaryKey("PK_DUsingTimes", x => x.UsingTimeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -180,7 +180,7 @@ namespace MyApplication.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Microwaves",
+                name: "DMicrowaves",
                 columns: table => new
                 {
                     MicrowaveId = table.Column<int>(nullable: false)
@@ -191,17 +191,17 @@ namespace MyApplication.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Microwaves", x => x.MicrowaveId);
+                    table.PrimaryKey("PK_DMicrowaves", x => x.MicrowaveId);
                     table.ForeignKey(
-                        name: "FK_Microwaves_RelaxRooms_RelaxRoomId",
+                        name: "FK_DMicrowaves_DRelaxRooms_RelaxRoomId",
                         column: x => x.RelaxRoomId,
-                        principalTable: "RelaxRooms",
+                        principalTable: "DRelaxRooms",
                         principalColumn: "RelaxRoomId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Queues",
+                name: "DQueues",
                 columns: table => new
                 {
                     QueueId = table.Column<int>(nullable: false)
@@ -213,17 +213,17 @@ namespace MyApplication.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Queues", x => x.QueueId);
+                    table.PrimaryKey("PK_DQueues", x => x.QueueId);
                     table.ForeignKey(
-                        name: "FK_Queues_Microwaves_MicrowaveId",
+                        name: "FK_DQueues_DMicrowaves_MicrowaveId",
                         column: x => x.MicrowaveId,
-                        principalTable: "Microwaves",
+                        principalTable: "DMicrowaves",
                         principalColumn: "MicrowaveId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Queues_UsingTimes_UsingTimeId",
+                        name: "FK_DQueues_DUsingTimes_UsingTimeId",
                         column: x => x.UsingTimeId,
-                        principalTable: "UsingTimes",
+                        principalTable: "DUsingTimes",
                         principalColumn: "UsingTimeId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -268,18 +268,18 @@ namespace MyApplication.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Microwaves_RelaxRoomId",
-                table: "Microwaves",
+                name: "IX_DMicrowaves_RelaxRoomId",
+                table: "DMicrowaves",
                 column: "RelaxRoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Queues_MicrowaveId",
-                table: "Queues",
+                name: "IX_DQueues_MicrowaveId",
+                table: "DQueues",
                 column: "MicrowaveId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Queues_UsingTimeId",
-                table: "Queues",
+                name: "IX_DQueues_UsingTimeId",
+                table: "DQueues",
                 column: "UsingTimeId");
         }
 
@@ -301,7 +301,7 @@ namespace MyApplication.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Queues");
+                name: "DQueues");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -310,13 +310,13 @@ namespace MyApplication.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Microwaves");
+                name: "DMicrowaves");
 
             migrationBuilder.DropTable(
-                name: "UsingTimes");
+                name: "DUsingTimes");
 
             migrationBuilder.DropTable(
-                name: "RelaxRooms");
+                name: "DRelaxRooms");
         }
     }
 }

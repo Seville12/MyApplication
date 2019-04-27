@@ -25,9 +25,9 @@ namespace MyApplication
 
                 try
                 {
-                    var context = services.GetRequiredService<ApplicationDbContext>();
-                    context.Database.Migrate();
-                    DbInitializer.Initialize(context);
+                    //var context = services.GetRequiredService<ApplicationDbContext>();
+                    //context.Database.Migrate();
+                    //DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {

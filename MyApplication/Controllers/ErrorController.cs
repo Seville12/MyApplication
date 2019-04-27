@@ -6,8 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MyApplication.Controllers
 {
+    /// <summary>
+    /// Контролллер обработчика ошибок
+    /// </summary>
     public class ErrorController : Controller
     {
+        [HttpGet]
         public IActionResult Error(int? statusCode = null)
         {
             if (statusCode.HasValue)

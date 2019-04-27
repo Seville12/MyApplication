@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace MyApplication.Models
+namespace DAL.Models
 {
     /// <summary>
     /// Время использования
     /// </summary>
-    public class UsingTime
+    public class DUsingTime
     {
         /// <summary>
         /// Индентификатор время использования

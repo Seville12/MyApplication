@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyApplication.Models;
@@ -9,6 +10,9 @@ using MyApplication.Models.ViewModels;
 
 namespace MyApplication.Controllers
 {
+    /// <summary>
+    /// Контроллер регистрации и авторизации
+    /// </summary>
     public class AccountController : Controller
     {
         private readonly UserManager<User> _userManager;
