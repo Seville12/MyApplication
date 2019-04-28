@@ -10,7 +10,7 @@ using Mapster;
 
 namespace BAL.Services.Implementation
 {
-    internal class QueueBalService : IQueueBalService
+    public class QueueBalService : IQueueBalService
     {
         private readonly IQueueDalService queueService;
         public QueueBalService(IQueueDalService queueService)

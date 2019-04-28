@@ -20,7 +20,7 @@ namespace MyApplication.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         [HttpPost]

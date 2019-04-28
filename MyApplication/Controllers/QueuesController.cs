@@ -27,7 +27,7 @@ namespace MyApplication.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View(await this._que.GetQueue(HttpContext.User.Identity.Name));
+            return View("Index", await this._que.GetQueue(HttpContext.User.Identity.Name));
         }
 
         [HttpGet]
