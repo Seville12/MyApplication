@@ -18,10 +18,10 @@ namespace DAL.Services.Implementation
         }
         public async Task CreateQue(DQueue queue)
         {
-            //var microwaveId = db.DMicrowaves.Join;
-            //var usingTimeId = db.DUsingTimes;
+           
             this.db.DQueues.Add(queue);
             await this.db.SaveChangesAsync();
+            await db.DMicrowaves.ToListAsync();
         }
         
         public async Task<IList<DQueue>> GetQueue(string user)
