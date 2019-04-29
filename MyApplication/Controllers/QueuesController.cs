@@ -31,10 +31,10 @@ namespace MyApplication.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            //ViewData["MicrowaveId"] = new SelectList(_context.Microwaves, "MicrowaveId", "Mark");
-            //ViewData["UsingTimeId"] = new SelectList(_context.UsingTimes, "UsingTimeId", "Value");
+            ViewBag.MicrowaveId = new SelectList(await _que.GetMicrowave(), "MicrowaveId", "Mark");
+            ViewBag.UsingTimeId = new SelectList(await _que.GetUsingTime(), "UsingTimeId", "Value");
             return View();
         }
 
@@ -47,8 +47,8 @@ namespace MyApplication.Controllers
                 await _que.CreateQue(queue);
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["MicrowaveId"] = new SelectList(_context.Microwaves, "MicrowaveId", "MicrowaveId", queue.MicrowaveId);
-            //ViewData["UsingTimeId"] = new SelectList(_context.UsingTimes, "UsingTimeId", "UsingTimeId", queue.UsingTimeId);
+            ViewBag.MicrowaveId = new SelectList(await _que.GetMicrowave(), "MicrowaveId", "Mark", queue.MicrowaveId);
+            ViewBag.UsingTimeId = new SelectList(await _que.GetUsingTime(), "MicrowaveId", "Mark", queue.UsingTimeId);
             return View(queue);
         }
 

@@ -23,11 +23,20 @@ namespace DAL.Services.Implementation
             await this.db.SaveChangesAsync();
             await db.DMicrowaves.ToListAsync();
         }
-        
+
+        public async Task<IList<DMicrowave>> GetMicrowave()
+        {
+            return await db.DMicrowaves.ToListAsync();
+        }
+
         public async Task<IList<DQueue>> GetQueue(string user)
         {
             return await db.DQueues.Include(q => q.Microwave).Include(q => q.UsingTime).ToListAsync();
         }
 
+        public async Task<IList<DUsingTime>> GetUsingTime()
+        {
+            return await db.DUsingTimes.ToListAsync();
+        }
     }
 }

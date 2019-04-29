@@ -21,5 +21,15 @@ namespace DAL.Services
         /// </summary>
         /// <param name="queue">Очередь</param>
         Task CreateQue(DQueue queue);
+
+        /// <summary>
+        /// Получает список микроволновок
+        /// </summary>
+        Task<IList<DMicrowave>> GetMicrowave();
+
+        /// <summary>
+        /// Получает список время использования
+        /// </summary>
+        Task<IList<DUsingTime>> GetUsingTime();
     }
 }

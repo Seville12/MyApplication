@@ -24,10 +24,22 @@ namespace BAL.Services.Implementation
             await this.queueService.CreateQue(queueD);
         }
 
+        public async Task<IList<BMicrowave>> GetMicrowave()
+        {
+            var microwaveD = await this.queueService.GetMicrowave();
+            return microwaveD.Select(el => (el.Adapt<BMicrowave>())).ToList();
+        }
+
         public async Task<IList<BQueue>> GetQueue(string user)
         {
             var queueD = await this.queueService.GetQueue(user);
             return queueD.Select(el => (el.Adapt<BQueue>())).ToList();
+        }
+
+        public async Task<IList<BUsingTime>> GetUsingTime()
+        {
+            var usingTimeD = await this.queueService.GetUsingTime();
+            return usingTimeD.Select(el => (el.Adapt<BUsingTime>())).ToList();
         }
     }
 }

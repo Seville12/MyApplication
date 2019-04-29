@@ -24,10 +24,19 @@ namespace MyApplication.Services.Implementation
             return queueV.QueueId;
         }
 
+        public async Task<IEnumerable<Microwave>> GetMicrowave()
+        {
+            return (await this.queService.GetMicrowave()).Adapt<IEnumerable<Microwave>>();
+        }
+
         public async Task<IEnumerable<Queue>> GetQueue(string user)
         {
             return (await this.queService.GetQueue(user)).Adapt<IEnumerable<Queue>>();
         }
 
+        public async Task<IEnumerable<UsingTime>> GetUsingTime()
+        {
+            return (await this.queService.GetUsingTime()).Adapt<IEnumerable<UsingTime>>();
+        }
     }
 }

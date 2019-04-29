@@ -21,5 +21,15 @@ namespace MyApplication.Services
         /// </summary>
         /// <param name="queue">Очередь</param>
         Task<int> CreateQue(Queue queue);
+
+        /// <summary>
+        /// Получает список микроволновок
+        /// </summary>
+        Task<IEnumerable<Microwave>> GetMicrowave();
+
+        /// <summary>
+        /// Получает список время использования
+        /// </summary>
+        Task<IEnumerable<UsingTime>> GetUsingTime();
     }
 }

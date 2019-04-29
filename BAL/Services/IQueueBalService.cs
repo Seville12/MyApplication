@@ -22,5 +22,15 @@ namespace BAL.Services
         /// </summary>
         /// <param name="queue">Очередь</param>
         Task CreateQue(BQueue queue);
+
+        /// <summary>
+        /// Получает список микроволновок
+        /// </summary>
+        Task<IList<BMicrowave>> GetMicrowave();
+
+        /// <summary>
+        /// Получает список время использования
+        /// </summary>
+        Task<IList<BUsingTime>> GetUsingTime();
     }
 }
